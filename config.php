@@ -10,6 +10,3 @@
 		exit("Error: " . $e->getMessage());
 	}
 ?>
-
-
-

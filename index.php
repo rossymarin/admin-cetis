@@ -1,9 +1,9 @@
 <?php
 	include('config.php');
+
 	session_start();
 	
 	if (isset($_POST['login'])) {
-	
 		$username = $_POST['username'];
 		$password = $_POST['password'];
 		
@@ -18,7 +18,8 @@
 		} else {
 			if (password_verify($password, $result['pass'])) {
 				$_SESSION['user_id'] = $result['ID'];
-				echo '<p class="success">Congratulations, you are logged in!</p>';
+				echo $_SESSION['user_id'];
+				header("Location: dashboard.php");
 			} else {
 				echo '<p class="error">Username password combination is wrong!</p>';
 			}
@@ -35,7 +36,8 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <title>Cetis 28 root</title>
+	<script type="text/javascript" src="JS/funciones.js"></script>
+    <title>Cetis 28 admin</title>
 </head>
 <body>
     <div class="container h-100">
@@ -62,7 +64,9 @@
 						</div>
 						<br>
 						<div class="d-flex justify-content-center mt-3 login_container">
-                            <input type="submit" name="login" value="Login" class="btn login_btn"></input>
+							<form action="javascript:login()">
+								<input type="submit" name="login" value="Login" class="btn login_btn"></input>
+							</form>
                         </div>
 					</form>
 				</div>

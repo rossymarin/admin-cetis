@@ -1,0 +1,75 @@
+.titulo{
+    color: rgb(59, 9, 9);
+    text-align: center;
+}
+
+h2.titulo {
+    padding-top: 20px;
+}
+
+.text{
+    text-align: justify;
+    font-size: 15px;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
+.divfon{
+    background-image: url(../resource/Image/fondo1.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+.row{
+    width: 100%;
+    padding: 3%;
+    margin-left: 0%;
+}
+
+.tit{
+    background-color: rgba(247, 234, 234, 0.753);
+}
+
+.imge{
+    width: 95%;
+}
+
+.txtcen{
+    text-align: center;
+}
+
+.mt-20{
+    margin-top: 20px;
+}
+
+.mt-30{
+    margin-top: 30px;
+}
+
+.mt-40{
+    margin-top: 40px;
+}
+
+div.hov :hover{
+    transform: scale(1.05);
+    transition: ss 2;
+    background-color: rgba(255, 190, 190, 0.89);
+    border-radius: 10px;
+}
+
+.hov{
+    height: 100%;
+    background-color: blanchedalmond;
+}
+
+.card{
+    border-left-width: 20px;
+    border-left-color: rgb(59, 9, 9);
+}
+
+object.pdfview{
+    margin: auto;
+    display: block;
+    width: 80%;
+    height: 100vh;
+}
+
