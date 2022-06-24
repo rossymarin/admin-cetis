@@ -137,31 +137,19 @@
                             </button>
                         </div>
                         <div class="modal-body">
-                        <table class="table" id="deleteTable">
-                            <thead class="thead-dark">
-                                <tr>
-                                <th scope="col" colspan="2">Imagenes</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                <td>Mark</td>
-                                <td>Otto</td>
-                                </tr>
-                                <tr>
-                                <td>Thornton</td>
-                                <td>@fat</td>
-                                </tr>
-                                <tr>
-                                <td>the Bird</td>
-                                <td>@twitter</td>
-                                </tr>
-                            </tbody>
+                            <table class="table">
+                                <thead class="thead-dark">
+                                    <tr>
+                                    <th scope="col">Imagenes</th>
+                                    <th scope="col">Hipervinculo</th>
+                                    <th scope="col"></th>
+                                    </tr>
+                                </thead>
+                                <tbody id="deleteTable"></tbody>
                             </table>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                            <button type="button" class="btn btn-primary" onclick="javascript:eliminarImagen();" data-dismiss="modal">Eliminar</button>
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal" data-backdrop="static">Cerrar</button>
                         </div>
                         </div>
                     </div>

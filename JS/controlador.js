@@ -143,9 +143,10 @@ function listImage(){
   var sol = new XMLHttpRequest;
 
   var tabla = document.getElementById("deleteTable")
+  tabla.innerHTML="";
 
   datos.append("opc", "carrusel");
-  datos.append("acc", "eliminar");
+  datos.append("acc", "listar");
   
   sol.addEventListener("load", function(e) {
                
@@ -156,9 +157,46 @@ function listImage(){
       tabla.innerHTML +=  `<tr>
                             <td>${js.nombre}</th>
                             <td>${js.hiper}</td> 
+                            <td><button type="button" class="btn btn-link" data-toggle="modal" data-target="#ModalConfirmDelete"><i class="fa fa-trash" style="color:red"></i></button></td>
+                            <div class="modal modal-position fade" id="ModalConfirmDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">¿Desea eliminar esta imagen?</h5>
+                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    La imagen no podra recuperarse.
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                                    <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="javascript:deleteImage(${js.id})">Eliminar</button>
+                                </div>
+                                </div>
+                            </div>
+                            </div>
                           </tr>`
     }
-    console.log(cadena)
+  })
+
+  sol.open("POST", urlP);
+  sol.send(datos);  
+}
+
+function deleteImage(id){
+  var datos = new FormData();
+  var sol = new XMLHttpRequest;
+
+  datos.append("opc", "carrusel");
+  datos.append("acc", "eliminar");
+  datos.append("id", id);
+
+  sol.addEventListener("load", function(e) {
+      setTimeout(function(){
+        listImage();
+      },500);
   })
 
   sol.open("POST", urlP);

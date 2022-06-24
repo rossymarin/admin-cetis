@@ -13,8 +13,11 @@
 					case 'guardar':
 						echo $image->guardar();
 						break;
-                    case 'eliminar':
+                    case 'listar':
                         echo $image->listImages();
+                        break;
+                    case 'eliminar':
+                        echo $image->eliminar($_POST['id']);
                         break;
                 }
             break;
