@@ -31,18 +31,33 @@ function showCarousel(){
     var slideNumber = 0
     for (let x = cadena.length-2; x >= 0; x--) {
       var js = JSON.parse(cadena[x]);
-      if (slideNumber == 0) {
-        carouselImage.innerHTML = `<div class='carousel-item active'>
-                                      <img class='d-block w-100 carousel-img' src='${'php/files/'+js.nombre}' alt='Slide'/>
-                                  </div>`
-        carouselNumber.innerHTML += `<li data-target='#carouselExampleIndicators' data-slide-to='${slideNumber}'></li>`;
+      if (js.hiper!="") {
+        if (slideNumber == 0) {
+          carouselImage.innerHTML = `<div class='carousel-item active'>
+                                      <a href="${js.hiper}" target="_blank"><img class='d-block w-100 carousel-img' src='${'php/files/'+js.nombre}' alt='Slide'><img/></a>
+                                    </div>`
+          carouselNumber.innerHTML += `<li data-target='#carouselExampleIndicators' data-slide-to='${slideNumber}'></li>`;
+        }else{
+          carouselImage.innerHTML +=  `<div class='carousel-item'>
+                                        <a href="${js.hiper}" target="_blank"><img class='d-block w-100 carousel-img' src='${'php/files/'+js.nombre}' alt='Slide'></img></a>
+                                      </div>`;
+          carouselNumber.innerHTML += `<li data-target='#carouselExampleIndicators' data-slide-to='${slideNumber}'></li>`;
+        }
+        slideNumber++;
       }else{
-        carouselImage.innerHTML +=  `<div class='carousel-item'>
-                                        <img class='d-block w-100 carousel-img' src='${'php/files/'+js.nombre}' alt='Slide'/>
-                                    </div>`;
-        carouselNumber.innerHTML += `<li data-target='#carouselExampleIndicators' data-slide-to='${slideNumber}'></li>`;
+        if (slideNumber == 0) {
+          carouselImage.innerHTML = `<div class='carousel-item active'>
+                                      <img class='d-block w-100 carousel-img' src='${'php/files/'+js.nombre}' alt='Slide'><img/>
+                                    </div>`
+          carouselNumber.innerHTML += `<li data-target='#carouselExampleIndicators' data-slide-to='${slideNumber}'></li>`;
+        }else{
+          carouselImage.innerHTML +=  `<div class='carousel-item'>
+                                          <img class='d-block w-100 carousel-img' src='${'php/files/'+js.nombre}' alt='Slide'/>
+                                      </div>`;
+          carouselNumber.innerHTML += `<li data-target='#carouselExampleIndicators' data-slide-to='${slideNumber}'></li>`;
+        }
+        slideNumber++;
       }
-      slideNumber++;
     }
   })
 
