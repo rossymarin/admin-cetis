@@ -155,29 +155,14 @@ function listImage(){
     for (let x = 0; x < cadena.length-1; x++) {
       var js = JSON.parse(cadena[x]);
       tabla.innerHTML +=  `<tr>
-                            <td>${js.nombre}</th>
+                            <td id=${js.id}>${js.nombre}</th>
                             <td>${js.hiper}</td> 
-                            <td><button type="button" class="btn btn-link" data-toggle="modal" data-target="#ModalConfirmDelete"><i class="fa fa-trash" style="color:red"></i></button></td>
-                            <div class="modal modal-position fade" id="ModalConfirmDelete" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                            <div class="modal-dialog" role="document">
-                                <div class="modal-content">
-                                <div class="modal-header">
-                                    <h5 class="modal-title" id="exampleModalLabel">¿Desea eliminar esta imagen?</h5>
-                                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                                <div class="modal-body">
-                                    La imagen no podra recuperarse.
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
-                                    <button type="button" class="btn btn-primary" data-dismiss="modal" onclick="javascript:deleteImage(${js.id})">Eliminar</button>
-                                </div>
-                                </div>
-                            </div>
-                            </div>
+                            <td>
+                           <button type="button" class="btn btn-primary" onclick="javascript:deleteImage(${js.id});">Eliminar</button>
+                              
+                            </td>
                           </tr>`
+                          console.log(js.id)
     }
   })
 
@@ -188,17 +173,21 @@ function listImage(){
 function deleteImage(id){
   var datos = new FormData();
   var sol = new XMLHttpRequest;
+  console.log(id);
+
+  var nombre = document.getElementById(id);
 
   datos.append("opc", "carrusel");
   datos.append("acc", "eliminar");
   datos.append("id", id);
+  datos.append("nombre", nombre.innerText);
 
   sol.addEventListener("load", function(e) {
+    console.log(e.target.responseText)
       setTimeout(function(){
         listImage();
       },500);
   })
-
   sol.open("POST", urlP);
   sol.send(datos);  
 }

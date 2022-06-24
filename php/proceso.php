@@ -17,7 +17,7 @@
                         echo $image->listImages();
                         break;
                     case 'eliminar':
-                        echo $image->eliminar($_POST['id']);
+                        echo $image->eliminar($_POST);
                         break;
                 }
             break;

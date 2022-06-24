@@ -36,14 +36,16 @@ class Carrusel extends Conexion{
         move_uploaded_file($tmp_name, "files/".$file_name); //moving file to the specified folder with dynamic name      
     }
 
-    function eliminar($id){
+    function eliminar($datos){
         $cad = "";
-        if ($id!="") {
+        $id = $datos['id'];
+        $nombre = $datos['nombre'];
+        if ($datos['id']!="" && unlink('files/'.$nombre)) {
             $insert = "DELETE FROM carrusel WHERE id=$id";
             $consul = $this -> select($insert);
-            $cad = "Se ha eliminado este producto";
+            $cad = "Se ha eliminado este producto ".$id;
         }else{
-            $cad = "Error";
+            $cad = "Error ".$nombre;
         }
         return $cad;
     }
