@@ -45,6 +45,35 @@ function consultarHistorial(){
     sol.send(datos);
 }
 
+function showCarousel(){
+  var datos = new FormData();
+  var sol = new XMLHttpRequest;
+
+  var carouselImage = document.getElementById("carousel-image");
+  var carouselNumber = document.getElementById("carousel-number");
+
+  datos.append("opc", "carrusel");
+  datos.append("acc", "mostrar");
+  sol.addEventListener("load", function(e) {
+    //console.log(e.target.responseText) //respuesta de php
+    var cadena = e.target.responseText;
+    cadena=cadena.split("-@-");
+    var slideNumber = 0
+    for (let x = 0; x < cadena.length-1; x++) {
+      var js = JSON.parse(cadena[x]);
+      slideNumber++;
+      
+      carouselImage.innerHTML +=  `<div class='carousel-item'>
+                                      <img class='d-block w-100 carousel-img' src='${'php/files/'+js.nombre}' alt='Slide'/>
+                                  </div>`;
+      carouselNumber.innerHTML += `<li data-target='#carouselExampleIndicators' data-slide-to='${slideNumber}'></li>`;
+    }
+  })
+
+  sol.open("POST", urlP);
+  sol.send(datos);  
+}
+
 function mostrar(div){
     div = document.getElementById(div)
     if (div.style.display==='none'){
@@ -102,6 +131,7 @@ function saveFile(){
 
   sol.addEventListener("load", function(e){
     cleanUploader();
+    showCarousel();
   });
   sol.open("POST", urlP);
   sol.send(datos); 
@@ -186,6 +216,7 @@ function deleteImage(id){
     console.log(e.target.responseText)
       setTimeout(function(){
         listImage();
+        showCarousel();
       },500);
   })
   sol.open("POST", urlP);

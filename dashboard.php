@@ -32,7 +32,7 @@
     <script type="text/javascript" src="JS/controlador.js"></script>
     <title>CETis 28</title>
 </head>
-<body onload="javascript:selectImage();">
+<body onload="javascript:selectImage(), showCarousel();">
     <div class="header">
         <img width="250px" class="header_logo ml-50" src="resource/Image/Logos/logo-sep.png" alt="header"/>
         <div class="div header_logo">
@@ -61,20 +61,12 @@
     <div class="row">
             <div class="col-8">
                 <div id='carouselExampleIndicators' class='carousel slide' data-ride='carousel'>
-                    <ol class='carousel-indicators'>
+                    <ol id='carousel-number' class='carousel-indicators'>
                         <li data-target='#carouselExampleIndicators' data-slide-to='0' class='active'></li>
-                        <li data-target='#carouselExampleIndicators' data-slide-to='1'></li>
-                        <li data-target='#carouselExampleIndicators' data-slide-to='2'></li>
                     </ol>
-                    <div class='carousel-inner'>
+                    <div id="carousel-image" class='carousel-inner'>
                         <div class='carousel-item active'>
                             <img class='d-block w-100 carousel-img' src='resource/Image/portada-docentes.jpg' alt='First slide'/>
-                        </div>
-                        <div class='carousel-item'>
-                            <img class='d-block w-100 carousel-img' src='resource/Image/Logos/logo-dgeti.png' alt='Second slide'/>
-                        </div>
-                        <div class='carousel-item'>
-                            <img class='d-block w-100 carousel-img' src='resource/Image/portada-halcones.png' alt='Third slide'/>
                         </div>
                     </div>
                     <a class='carousel-control-prev' href='#carouselExampleIndicators' role='button' data-slide='prev'>

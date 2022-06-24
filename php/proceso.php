@@ -19,6 +19,9 @@
                     case 'eliminar':
                         echo $image->eliminar($_POST);
                         break;
+                    case 'mostrar':
+                        echo $image->listImages($_POST);
+                        break;
                 }
             break;
         }
