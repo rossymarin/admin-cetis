@@ -1,4 +1,4 @@
-var urlI = "../php/Interfaz.php";
+var urlI = "php/Interfaz.php";
 var urlP = "php/proceso.php";
 
 function viewsPag(menu,vista,sub) {
@@ -14,37 +14,6 @@ function viewsPag(menu,vista,sub) {
     sol.send(datos);
 }
 
-function consultarHistorial(){
-    var datos = new FormData();
-    var sol = new XMLHttpRequest();
-    var curp = document.getElementById("curp").value;
-    var nucontrol = document.getElementById("ncontrol").value;
-    
-    datos.append("opc", "alumno");
-    datos.append("acc","consultar");
-    datos.append("curp",curp);
-    datos.append("ncontrol",nucontrol);
-
-    sol.addEventListener("load", function(e){
-        document.getElementById("hipper").style.visibility="visible";
-        var cadena = e.target.responseText;
-			cadena = cadena.split("-@-");
-        
-		for (var x=0; x <= cadena.length-2; x++){
-			var js = JSON.parse(cadena[x]);
-            if(js != null){
-                var historial =js.hipper;
-                document.getElementById("link").setAttribute("href",historial)
-                document.getElementById("link").innerText="Historial "+curp;
-            }else{
-                alert("Los datos ingresados son incorrectos");
-            }
-        }
-    });
-    sol.open("POST",urlP);
-    sol.send(datos);
-}
-
 function showCarousel(){
   var datos = new FormData();
   var sol = new XMLHttpRequest;
@@ -56,22 +25,36 @@ function showCarousel(){
   datos.append("acc", "mostrar");
   sol.addEventListener("load", function(e) {
     //console.log(e.target.responseText) //respuesta de php
+    cleanCarousel();
     var cadena = e.target.responseText;
     cadena=cadena.split("-@-");
     var slideNumber = 0
-    for (let x = 0; x < cadena.length-1; x++) {
+    for (let x = cadena.length-2; x >= 0; x--) {
       var js = JSON.parse(cadena[x]);
-      slideNumber++;
-      
-      carouselImage.innerHTML +=  `<div class='carousel-item'>
+      if (slideNumber == 0) {
+        carouselImage.innerHTML = `<div class='carousel-item active'>
                                       <img class='d-block w-100 carousel-img' src='${'php/files/'+js.nombre}' alt='Slide'/>
-                                  </div>`;
-      carouselNumber.innerHTML += `<li data-target='#carouselExampleIndicators' data-slide-to='${slideNumber}'></li>`;
+                                  </div>`
+        carouselNumber.innerHTML += `<li data-target='#carouselExampleIndicators' data-slide-to='${slideNumber}'></li>`;
+      }else{
+        carouselImage.innerHTML +=  `<div class='carousel-item'>
+                                        <img class='d-block w-100 carousel-img' src='${'php/files/'+js.nombre}' alt='Slide'/>
+                                    </div>`;
+        carouselNumber.innerHTML += `<li data-target='#carouselExampleIndicators' data-slide-to='${slideNumber}'></li>`;
+      }
+      slideNumber++;
     }
   })
 
   sol.open("POST", urlP);
   sol.send(datos);  
+}
+
+function cleanCarousel(){
+  var carouselImage = document.getElementById("carousel-image");
+  var carouselNumber = document.getElementById("carousel-number");
+  carouselImage.innerHTML = "";
+  carouselNumber.innerHTML = "";
 }
 
 function mostrar(div){
