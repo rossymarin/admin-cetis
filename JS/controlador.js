@@ -36,7 +36,7 @@ function showCarousel(){
           carouselImage.innerHTML = `<div class='carousel-item active'>
                                       <a href="${js.hiper}" target="_blank"><img class='d-block w-100 carousel-img' src='${'php/files/'+js.nombre}' alt='Slide'><img/></a>
                                     </div>`
-          carouselNumber.innerHTML += `<li data-target='#carouselExampleIndicators' data-slide-to='${slideNumber}'></li>`;
+          carouselNumber.innerHTML += `<li style="background-color: #cccc" data-target='#carouselExampleIndicators' data-slide-to='${slideNumber}'></li>`;
         }else{
           carouselImage.innerHTML +=  `<div class='carousel-item'>
                                         <a href="${js.hiper}" target="_blank"><img class='d-block w-100 carousel-img' src='${'php/files/'+js.nombre}' alt='Slide'></img></a>
@@ -130,6 +130,7 @@ function saveFile(){
   sol.addEventListener("load", function(e){
     cleanUploader();
     showCarousel();
+    listImage();
   });
   sol.open("POST", urlP);
   sol.send(datos); 
@@ -148,7 +149,12 @@ function guardarImagen(){
     datos.append("hiper", link.value);
     
     sol.addEventListener("load", function(e) {
+      console.log(e.target.responseText)
+      if (e.target.responseText == "existe") {
+        alert("existe")
+      }else{
         saveFile();
+      }
     })
 
     sol.open("POST", urlP);
@@ -180,18 +186,87 @@ function listImage(){
                
     var cadena = e.target.responseText;
     cadena=cadena.split("-@-");
-    for (let x = 0; x < cadena.length-1; x++) {
+    for (let x = cadena.length-2; x >= 0; x--) {
       var js = JSON.parse(cadena[x]);
+      if (js.hiper=="") {
+        js.hiper = "..."
+      }
+      console.log(js.id+" js.id")
       tabla.innerHTML +=  `<tr>
                             <td id=${js.id}>${js.nombre}</th>
-                            <td>${js.hiper}</td> 
+                            <td id="td-hiper">${js.hiper}</td> 
                             <td>
-                           <button type="button" class="btn btn-primary" onclick="javascript:deleteImage(${js.id});">Eliminar</button>
-                              
+                              <a href="#modify${js.id}" class="btn btn-warning"><i class="fa fa-edit" aria-hidden="true"></i></a>
+                              <div id="modify${js.id}" class="modals fade"  role="dialog">
+                                <div class="modal-contenido">
+                                  <div class="modal-header">
+                                      <h5 class="modal-title">Modificar imagen</h2>
+                                      <a href="#">
+                                          <button type="button" class="close">
+                                            <span aria-hidden="true">&times;</span>
+                                          </button>
+                                      </a>
+                                  </div>
+                                  <div class="modal-body">
+                                    <div class="form-group">
+                                      <label for="nombre-m">Nombre:</label>
+                                      <input type="text" class="form-control" id="nombre-m" value="${js.nombre}">
+                                      <label for="hiper-m">Hipervinculo:</label>
+                                      <input type="text" class="form-control" id="hiper-m" value="${js.hiper}">
+                                    
+                                    </div>
+                                  </div>
+                                  <div class="modal-footer">
+                                      <a href="#"><button type="button" class="btn btn-secondary">Cancelar</button></a>
+                                      <a href="#saveChanges${js.id}"><button type="button" class="btn btn-warning">Modificar</button></a>
+                                  </div>
+                                </div>  
+                              </div>
+                              <div id="saveChanges${js.id}" class="modals fade"  role="dialog">
+                                <div class="modal-contenido">
+                                  <div class="modal-header">
+                                    <h5 class="modal-title">¿Desea modificar esta imagen?</h2>
+                                      <a href="#">
+                                        <button type="button" class="close">
+                                          <span aria-hidden="true">&times;</span>
+                                        </button>
+                                      </a>
+                                  </div>
+                                  <div class="modal-body">
+                                    <p>Los cambios no podrán deshacerse.</p>
+                                  </div>
+                                  <div class="modal-footer">
+                                    <a href="#modify${js.id}"><button type="button" class="btn btn-secondary">Cancelar</button></a>
+                                    <button type="button" class="btn btn-primary" onclick="javascript:modifyImage(${js.id});">Guardar Cambios</button>
+                                  </div>
+                                </div>  
+                              </div>
+                            </td>
+                            <td>
+                              <a href="#delete${js.id}" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                              <div id="delete${js.id}" class="modals fade"  role="dialog">
+                                <div class="modal-contenido">
+                                  <div class="modal-header">
+                                      <h5 class="modal-title">¿Desea eliminar esta imagen?</h2>
+                                      <a href="#">
+                                          <button type="button" class="close">
+                                            <span aria-hidden="true">&times;</span>
+                                          </button>
+                                      </a>
+                                  </div>
+                                  <div class="modal-body">
+                                      <p>El archivo no podrá recuperarse.</p>
+                                  </div>
+                                  <div class="modal-footer">
+                                      <a href="#"><button type="button" class="btn btn-secondary">Cancelar</button></a>
+                                      <button type="button" class="btn btn-primary" onclick="javascript:modifyImage(${js.id});">Eliminar</button>
+                                  </div>
+                                </div>  
+                              </div>
                             </td>
                           </tr>`
-                          console.log(js.id)
     }
+    //<button type="button" class="btn btn-primary" onclick="javascript:deleteImage(${js.id});">Eliminar</button>
   })
 
   sol.open("POST", urlP);
@@ -201,7 +276,7 @@ function listImage(){
 function deleteImage(id){
   var datos = new FormData();
   var sol = new XMLHttpRequest;
-  console.log(id);
+  console.log(id+" deleted");
 
   var nombre = document.getElementById(id);
 

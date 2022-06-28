@@ -25,6 +25,7 @@
     <link rel="stylesheet" type="text/css" href="css/Navbar.css">
     <link rel="stylesheet" type="text/css" href="css/Footer.css">
     <link rel="stylesheet" type="text/css" href="css/Content.css">
+    <link rel="stylesheet" type="text/css" href="css/Modal.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
     <!--Carrusel-->
     <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
@@ -32,7 +33,7 @@
     <script type="text/javascript" src="JS/controlador.js"></script>
     <title>CETis 28</title>
 </head>
-<body onload="javascript:showCarousel(), selectImage();">
+<body onload="javascript:showCarousel(), selectImage(), listImage();">
     <div class="header">
         <img width="250px" class="header_logo ml-50" src="resource/Image/Logos/logo-sep.png" alt="header"/>
         <div class="div header_logo">
@@ -59,7 +60,7 @@
         </nav>
     </div>
     <div class="row">
-            <div class="col-8">
+            <div class="col-6">
                 <div id='carouselExampleIndicators' class='carousel slide' data-ride='carousel'>
                     <ol id='carousel-number' class='carousel-indicators'></ol>
                     <div id="carousel-image" class='carousel-inner'></div>
@@ -73,7 +74,20 @@
                     </a>
                 </div>
             </div>
-            <div class="col-4">
+            <div class="col-5" id="tableImages">
+                <table class="table" scrollable="true">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th scope="col">Imagenes</th>
+                            <th scope="col">Hipervinculo</th>
+                            <th scope="col" colspan="2">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody id="deleteTable"></tbody>
+                </table>
+            </div>
+
+            <div class="col-1">
                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modalInsert">Agregar</button>
                 <div class="modal fade" id="modalInsert" tabindex="-1" role="dialog" aria-labelledby="modalInsertTitle" aria-hidden="true">
                     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -108,35 +122,6 @@
                                 <button type="button" class="btn btn-secondary" onclick="javascript:cleanUploader();" data-dismiss="modal">Cancelar</button>
                                 <input type="button" id="insertImage" class="btn btn-primary" value="Guardar" onclick="javascript:guardarImagen();" data-dismiss="modal"/>
                             </div>
-                        </div>
-                    </div>
-                </div>
-
-                <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#modalDelete" onclick="javascript:listImage();">Eliminar</button>
-                <div class="modal fade" id="modalDelete" tabindex="-1" role="dialog" aria-labelledby="modalDeleteTitle" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered" role="document">
-                        <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLongTitle">Eliminar Imagen</h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-                            <table class="table">
-                                <thead class="thead-dark">
-                                    <tr>
-                                    <th scope="col">Imagenes</th>
-                                    <th scope="col">Hipervinculo</th>
-                                    <th scope="col"></th>
-                                    </tr>
-                                </thead>
-                                <tbody id="deleteTable"></tbody>
-                            </table>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-dismiss="modal" data-backdrop="static">Cerrar</button>
-                        </div>
                         </div>
                     </div>
                 </div>

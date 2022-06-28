@@ -19,12 +19,20 @@ class Carrusel extends Conexion{
 
     function agregar($datos){
         $cad = "";
+        $query = 'SELECT count(*) AS count FROM carrusel WHERE nombre= "'. $datos['nombre'].'"';
+        $consul = $this -> select($query);
+        $count = $consul->fetch_array(MYSQLI_ASSOC);
+
         if ($datos['nombre']!="" ) {
-            $insert = 'INSERT INTO carrusel VALUES (NULL, "'.$datos['nombre'].'", "'.$datos['hiper'].'")';
-            $consul = $this -> select($insert);
-            $cad = "Guardado con Exito";
+            if ($count['count'] > 0) {
+                $cad = "existe";
+            } else {  
+                $insert = 'INSERT INTO carrusel VALUES (NULL, "'.$datos['nombre'].'", "'.$datos['hiper'].'")';
+                $consul = $this -> select($insert);
+                $cad = "exito";
+            }
         }else{
-            $cad = "Datos incompletos";
+            $cad = "error";
         }
         echo $cad;
     }
@@ -49,6 +57,7 @@ class Carrusel extends Conexion{
         }
         return $cad;
     }
+
 
 }
 

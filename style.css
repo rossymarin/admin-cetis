@@ -2,7 +2,7 @@ body,html {
     margin: 0;
     padding: 0;
     height: 100%;
-    background-image: url(resources/CETis28.jpg) !important;
+    background-image: url(resource/Image/Logos/CETis28.jpg) !important;
     background-size: cover;
     background-repeat: no-repeat;
 }

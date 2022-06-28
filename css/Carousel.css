@@ -76,7 +76,8 @@ section .row{
     align-items: center;
     justify-content: space-between;
 }
-  section .row i{
+
+section .row i{
     color: rgb(118,7,62);
     font-size: 30px;
 }
@@ -142,4 +143,17 @@ section .details span{
     z-index: 10040;
     overflow: auto;
     overflow-y: clip;
- }
+}
+
+#tableImages{
+    table-layout: fixed;
+    overflow:scroll;
+    height:500px;
+    width:500px;
+}
+
+#td-hiper{
+    width: 20px !important;
+    overflow-x: auto;
+    word-wrap: break-word;
+}
