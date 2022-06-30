@@ -45,7 +45,6 @@
     <div class="sticky-top">
         <nav class="navbar navbar-expand-lg navbar-light">
             <ul class="nav navbar-nav">
-                <a class="navbar-brand" aria-current="page" href="javascript:viewsPag('index');">Inicio</a>
                 <button class="navbar-toggler bg-white" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button> 
@@ -74,8 +73,8 @@
                     </a>
                 </div>
             </div>
-            <div class="col-5" id="tableImages">
-                <table class="table" scrollable="true">
+            <div class="col-5 scroll" id="tableImages">
+                <table class="table">
                     <thead class="thead-dark">
                         <tr>
                             <th scope="col">Imagenes</th>
@@ -128,14 +127,5 @@
             </div>
         </div>
     </div>
-    
-    <footer class="page-footer font-small">
-        <div class="footer-copyright text-center py-2 footer">
-            Centro de Estudios Tecnológicos Industrial y de Servicio N° 28
-            "Ignacio Allende"
-            <p class="text-foot">Km. 108 carr. Fed. No.15 , Zirahuato de los Bernal, Zitácuaro, Mich, C.P.61500</p>
-        </div>
-    </footer>
-
 </body>
 </html>

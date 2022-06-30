@@ -16,12 +16,17 @@
                     case 'listar':
                         echo $image->listImages();
                         break;
+                    case 'guardar':
+                        echo $image->modificar($_POST);
+                        break;
                     case 'eliminar':
                         echo $image->eliminar($_POST);
                         break;
                     case 'mostrar':
                         echo $image->listImages($_POST);
                         break;
+                    case 'modificar':
+                        echo $image->modificar($_POST);
                 }
             break;
         }

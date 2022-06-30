@@ -44,6 +44,22 @@ class Carrusel extends Conexion{
         move_uploaded_file($tmp_name, "files/".$file_name); //moving file to the specified folder with dynamic name      
     }
 
+    function modificar($datos){
+        $cad = "";
+        $query = 'SELECT nombre FROM carrusel WHERE id='.$datos['id'];
+        $consul = $this -> select($query);
+        $nombre = $consul->fetch_array(MYSQLI_ASSOC);
+
+        if ($datos['id']!="" && rename("files/".$nombre['nombre'], "files/".$datos['newName'])) {
+            $insert = "UPDATE carrusel SET nombre='".$datos['newName']."', hiper='".$datos['newHiper']."' WHERE id=".$datos['id'];
+            $consul = $this -> select($insert);
+            $cad = "Se ha modificado este producto";
+        }else{
+            $cad = "Error";
+        }
+        echo $nombre['nombre']." ".$datos['newName']." ".$datos['newHiper'];
+    }
+
     function eliminar($datos){
         $cad = "";
         $id = $datos['id'];
@@ -57,8 +73,6 @@ class Carrusel extends Conexion{
         }
         return $cad;
     }
-
-
 }
 
 ?>

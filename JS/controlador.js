@@ -191,10 +191,9 @@ function listImage(){
       if (js.hiper=="") {
         js.hiper = "..."
       }
-      console.log(js.id+" js.id")
       tabla.innerHTML +=  `<tr>
-                            <td id=${js.id}>${js.nombre}</th>
-                            <td id="td-hiper">${js.hiper}</td> 
+                            <td id=${js.id} width="160px"><div style="overflow-x:auto; width:160px">${js.nombre}</th>
+                            <td width="200px"><div class="scroll" style="overflow-x:auto; width:200px">${js.hiper}</div></td> 
                             <td>
                               <a href="#modify${js.id}" class="btn btn-warning"><i class="fa fa-edit" aria-hidden="true"></i></a>
                               <div id="modify${js.id}" class="modals fade"  role="dialog">
@@ -209,10 +208,10 @@ function listImage(){
                                   </div>
                                   <div class="modal-body">
                                     <div class="form-group">
-                                      <label for="nombre-m">Nombre:</label>
-                                      <input type="text" class="form-control" id="nombre-m" value="${js.nombre}">
-                                      <label for="hiper-m">Hipervinculo:</label>
-                                      <input type="text" class="form-control" id="hiper-m" value="${js.hiper}">
+                                      <label for="nombre-m${js.id}">Nombre:</label>
+                                      <input type="text" class="form-control" id="nombre-m${js.id}" value="${js.nombre}">
+                                      <label for="hiper-m${js.id}">Hipervinculo:</label>
+                                      <input type="text" class="form-control" id="hiper-m${js.id}" value="${js.hiper}">
                                     
                                     </div>
                                   </div>
@@ -237,7 +236,7 @@ function listImage(){
                                   </div>
                                   <div class="modal-footer">
                                     <a href="#modify${js.id}"><button type="button" class="btn btn-secondary">Cancelar</button></a>
-                                    <button type="button" class="btn btn-primary" onclick="javascript:modifyImage(${js.id});">Guardar Cambios</button>
+                                    <a href="#"><button type="button" class="btn btn-primary" onclick="javascript:modifyImage(${js.id});">Guardar Cambios</button></a>
                                   </div>
                                 </div>  
                               </div>
@@ -259,7 +258,7 @@ function listImage(){
                                   </div>
                                   <div class="modal-footer">
                                       <a href="#"><button type="button" class="btn btn-secondary">Cancelar</button></a>
-                                      <button type="button" class="btn btn-primary" onclick="javascript:modifyImage(${js.id});">Eliminar</button>
+                                      <a href="#"><button type="button" class="btn btn-primary" onclick="javascript:deleteImage(${js.id});">Eliminar</button></a>
                                   </div>
                                 </div>  
                               </div>
@@ -269,6 +268,30 @@ function listImage(){
     //<button type="button" class="btn btn-primary" onclick="javascript:deleteImage(${js.id});">Eliminar</button>
   })
 
+  sol.open("POST", urlP);
+  sol.send(datos);  
+}
+
+function modifyImage(id){
+  var datos = new FormData();
+  var sol = new XMLHttpRequest;
+
+  var newName = document.getElementById("nombre-m"+id);
+  var newHiper = document.getElementById("hiper-m"+id);
+
+  datos.append("opc", "carrusel");
+  datos.append("acc", "modificar");
+  datos.append("id", id);
+  datos.append("newName", newName.value);
+  datos.append("newHiper", newHiper.value);
+
+  sol.addEventListener("load", function(e) {
+    console.log(e.target.responseText)
+      setTimeout(function(){
+        listImage();
+        showCarousel();
+      },500);
+  })
   sol.open("POST", urlP);
   sol.send(datos);  
 }

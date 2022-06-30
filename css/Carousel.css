@@ -147,13 +147,29 @@ section .details span{
 
 #tableImages{
     table-layout: fixed;
-    overflow:scroll;
+    overflow-y:scroll;
     height:500px;
     width:500px;
 }
 
-#td-hiper{
-    width: 20px !important;
-    overflow-x: auto;
-    word-wrap: break-word;
+
+
+/* Estilos para motores Webkit y blink (Chrome, Safari, Opera... )*/
+
+.scroll::-webkit-scrollbar {-webkit-appearance: none;}
+
+.scroll::-webkit-scrollbar:vertical {width:10px;}
+
+.scroll::-webkit-scrollbar:horizontal {height: 10px;}
+
+.scroll::-webkit-scrollbar-track {border-radius: 10px;}
+
+.scroll::-webkit-scrollbar-thumb {
+    background-color: #808080;
+    border-radius: 20px;
+    border: 2px solid #f1f2f3;
+}
+
+.scroll::-webkit-scrollbar-thumb:hover{
+    background-color: #bc4444;
 }
