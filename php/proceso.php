@@ -1,5 +1,6 @@
 <?PHP
     require_once("carrusel.lib.php");
+    require_once("alumnos.lib.php");
     
     if(isset($_POST['opc'])){
         switch($_POST['opc']){
@@ -27,6 +28,17 @@
                         break;
                     case 'modificar':
                         echo $image->modificar($_POST);
+                }
+            break;
+            case 'alumnos':
+                $alumno = new Alumnos();
+                switch($_POST['acc']){
+                    case 'listar':
+                        echo $alumno->listar($_POST);
+                    break;
+                    case 'agregar':
+                        echo $alumno->agregar($_POST);
+                    break;
                 }
             break;
         }

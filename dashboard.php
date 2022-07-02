@@ -23,14 +23,14 @@
     <link rel="stylesheet" type="text/css" href="css/Header.css">
     <link rel="stylesheet" type="text/css" href="css/Carousel.css">
     <link rel="stylesheet" type="text/css" href="css/Navbar.css">
-    <link rel="stylesheet" type="text/css" href="css/Footer.css">
     <link rel="stylesheet" type="text/css" href="css/Content.css">
     <link rel="stylesheet" type="text/css" href="css/Modal.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css"/>
     <!--Carrusel-->
     <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60=" crossorigin="anonymous"></script>
     <script async src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="JS/controlador.js"></script>
+    <script type="text/javascript" src="JS/carrusel.js"></script>
+    <script type="text/javascript" src="JS/navbar.js"></script>
     <title>CETis 28</title>
 </head>
 <body onload="javascript:showCarousel(), selectImage(), listImage();">
@@ -48,8 +48,8 @@
                 <button class="navbar-toggler bg-white" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
                 </button> 
-                <a class="navbar-brand" aria-current="page" href="javascript:viewsPag('index');">Carrusel</a>
-                <a class="navbar-brand" aria-current="page" href="javascript:viewsPag('index');">Alumnos</a>
+                <a class="navbar-brand" aria-current="page" href="javascript:navigate('dashboard.php');">Carrusel</a>
+                <a class="navbar-brand" aria-current="page" href="javascript:navigate('alumnos.php');">Alumnos</a>
                 <a class="navbar-brand" aria-current="page" href="javascript:viewsPag('index');">Horarios</a>
                 <a class="navbar-brand" aria-current="page" href="javascript:viewsPag('index');">Tramites</a>  
                 <form id="logout" name="logout">
