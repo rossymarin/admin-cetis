@@ -1,19 +1,40 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
 
+.modal-contenido{
+    background-color:rgb(253, 254, 254);
+    width:400px;
+    padding: 10px 20px;
+    margin: 30% auto;
+    margin-top: 10%;
+    position: relative;
+    border-radius: 5px;
+    box-shadow: 10px 10px 10px 10px rgba(0, 0, 0, 0.2);
+    z-index: 20;
+}
+
 .modal-position {
     position: absolute;
     top: 0;
-    right: 50px;
+    right: 0;
     bottom: 0;
-    left: 50px;
-    z-index: 10040;
+    left: 0;
+    z-index: 0;
     overflow: auto;
-    overflow-y: clip;
+    overflow-y: scroll;
+}
+
+/* Important part */
+.modal-dialog{
+    overflow-y: initial !important
+}
+.modal-body{
+    height: 50vh;
+    overflow-y: auto;
 }
 
 #tableAlumnos{
     table-layout: fixed;
-    overflow-y:scroll;
+    overflow-y: auto;
     height:500px;
     width:500px;
 }
@@ -21,7 +42,6 @@
 th{
     position: sticky;
     top: 0;
-    z-index: 10;
 }
 
 /* Estilos para motores Webkit y blink (Chrome, Safari, Opera... )*/

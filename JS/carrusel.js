@@ -94,7 +94,6 @@ function selectImage(){
   let file = target.files[0];
   if(file){
       let fileName = file.name; 
-      console.log(fileName);
       uploadFile(fileName); 
     }
   }

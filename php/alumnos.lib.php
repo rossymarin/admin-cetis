@@ -22,13 +22,18 @@ class Alumnos extends Conexion{
         $query = 'SELECT count(*) AS count FROM alumnos WHERE curp= "'. $datos['curp'].'"';
         $consul = $this -> select($query);
         $count = $consul->fetch_array(MYSQLI_ASSOC);
-
-         
+        if ($datos['nombre']!="") {
+            if ($count['count'] > 0) {
+                $cad = "existe";
+            } else {  
                 $insert = 'INSERT INTO alumnos VALUES (NULL, "'.$datos['carrera'].'", "'.$datos['numero'].'", "'.$datos['curp'].'", "'.$datos['nombre'].'", "'.$datos['grupo'].'", "'.$datos['sexo'].'", "'.$datos['estatus'].'",  "'.$datos['hiper'].'");';
                 $consul = $this -> select($insert);
                 $cad = "exito";
-        
-        echo $datos['grupo'];
+            }
+        }else{
+            $cad = "error";
+        }
+        echo $cad;
     }
 
     function guardar(){

@@ -86,10 +86,13 @@
                                     <div class="col">
                                         <label for="carrera">Carrera</label>
                                         <select id="carrera" class="form-control">
-                                            <option selected>Selecciona</option>
+                                            <option selected disabled>Selecciona</option>
                                             <option>Programación</option>
-                                            <option>Programación</option>
-                                            <option>Programación</option>
+                                            <option>Contabilidad</option>
+                                            <option>Trabajo Social</option>
+                                            <option>Laboratorista Químico</option>
+                                            <option>Ofimática</option>
+                                            <option>Mantenimiento Automotriz</option>
                                         </select>
                                     </div>
                                     <div class="col">
@@ -111,7 +114,7 @@
                                     <div class="col">
                                         <label for="grupo">Grupo</label>
                                         <select id="grupo" class="form-control">
-                                            <option selected>Selecciona</option>
+                                            <option selected disabled>Selecciona</option>
                                             <option>1A</option>
                                             <option>2A</option>
                                             <option>3A</option>
@@ -129,7 +132,7 @@
                                     <div class="col">
                                         <label for="estatus">Estatus</label>
                                         <select id="estatus" class="form-control">
-                                            <option selected>Selecciona</option>
+                                            <option selected disabled>Selecciona</option>
                                             <option>Regular</option>
                                             <option>Irregular</option>
                                         </select>
@@ -142,7 +145,7 @@
                             </form>
                         </div>
                         <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" onclick="javascript:cleanUploader();" data-dismiss="modal">Cancelar</button>
+                            <button type="button" class="btn btn-secondary" onclick="javascript:cleanRegister();" data-dismiss="modal">Cancelar</button>
                             <a href="#save"><button type="button" class="btn btn-primary">Guardar</button></a>
                             <div id="save" class="modals fade" role="dialog">
                                 <div class="modal-contenido">
