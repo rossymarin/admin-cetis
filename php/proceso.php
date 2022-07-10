@@ -39,6 +39,12 @@
                     case 'agregar':
                         echo $alumno->agregar($_POST);
                     break;
+                    case 'modificar':
+                        echo $alumno->modificar($_POST);
+                    break;
+                    case 'eliminar':
+                        echo $alumno->eliminar($_POST);
+                    break;
                 }
             break;
         }

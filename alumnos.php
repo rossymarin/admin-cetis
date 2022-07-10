@@ -42,6 +42,8 @@
             </ul>
         </nav>
     </div>
+    <div id="alert-s" class="alert alert-success" role="alert" style="display: none;"></div>
+    <div id="alert-w" class="alert alert-danger" role="alert" style="display: none;"></div>
     <div class="col-10 mt-2">
         <div class="input-group">
             <div class="input-group-prepend">
@@ -52,7 +54,7 @@
     </div>
     <div class="row">   
         <div class="col-10 scroll" id="tableAlumnos">
-            <table class="table">
+            <table id="tableAlumnos2" class="table">
                 <thead class="thead-dark">
                     <tr>
                         <th scope="col">Carrera</th>
@@ -75,7 +77,7 @@
                 <div class="modal-dialog modal-dialog-centered" role="document">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLongTitle">Agregar Imagen</h5>
+                            <h5 class="modal-title" id="exampleModalLongTitle">Agregar Alumno</h5>
                             <button type="button" class="close" onclick="javascript:cleanUploader();" data-dismiss="modal" aria-label="Close">
                                 <span aria-hidden="true">&times;</span>
                             </button>
@@ -150,7 +152,7 @@
                             <div id="save" class="modals fade" role="dialog">
                                 <div class="modal-contenido">
                                   <div class="modal-header">
-                                    <h5 class="modal-title">¿Desea modificar esta imagen?</h2>
+                                    <h5 class="modal-title">¿Desea agregar este alumno?</h2>
                                       <a href="#">
                                         <button type="button" class="close">
                                           <span aria-hidden="true">&times;</span>
@@ -158,7 +160,7 @@
                                       </a>
                                   </div>
                                   <div class="modal-body">
-                                    <p>Los cambios no podrán deshacerse.</p>
+                                    <p>Se hará el registro en la base de datos.</p>
                                   </div>
                                   <div class="modal-footer">
                                     <a href="#"><button type="button" class="btn btn-secondary">Cancelar</button></a>

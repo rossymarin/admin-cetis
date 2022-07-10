@@ -36,39 +36,27 @@ class Alumnos extends Conexion{
         echo $cad;
     }
 
-    function guardar(){
-        $file_name =  $_FILES['file']['name']; //getting file name
-        $tmp_name = $_FILES['file']['tmp_name']; //getting temp_name of file
-        $file_up_name = time().$file_name; //making file name dynamic by adding time before file name
-        move_uploaded_file($tmp_name, "files/".$file_name); //moving file to the specified folder with dynamic name      
-    }
-
     function modificar($datos){
         $cad = "";
-        $query = 'SELECT nombre FROM carrusel WHERE id='.$datos['id'];
-        $consul = $this -> select($query);
-        $nombre = $consul->fetch_array(MYSQLI_ASSOC);
-
-        if ($datos['id']!="" && rename("files/".$nombre['nombre'], "files/".$datos['newName'])) {
-            $insert = "UPDATE carrusel SET nombre='".$datos['newName']."', hiper='".$datos['newHiper']."' WHERE id=".$datos['id'];
+        if ($datos['id']!="") {
+            $insert = "UPDATE alumnos SET carrera='".$datos['newCarrera']."', no_control='".$datos['newNumero']."', curp='".$datos['newCurp']."', nombre='".$datos['newName']."', grupo='".$datos['newGrupo']."', sexo='".$datos['newSexo']."', estatus='".$datos['newEstatus']."', hiper='".$datos['newHiper']."' WHERE id=".$datos['id'];
             $consul = $this -> select($insert);
-            $cad = "Se ha modificado este producto";
+            $cad = "exito";
         }else{
-            $cad = "Error";
+            $cad = "error";
         }
-        echo $nombre['nombre']." ".$datos['newName']." ".$datos['newHiper'];
+        echo $cad;
     }
 
     function eliminar($datos){
         $cad = "";
         $id = $datos['id'];
-        $nombre = $datos['nombre'];
-        if ($datos['id']!="" && unlink('files/'.$nombre)) {
-            $insert = "DELETE FROM carrusel WHERE id=$id";
+        if ($datos['id']!="") {
+            $insert = "DELETE FROM alumnos WHERE id=$id";
             $consul = $this -> select($insert);
-            $cad = "Se ha eliminado este producto ".$id;
+            $cad = "exito";
         }else{
-            $cad = "Error ".$nombre;
+            $cad = "error";
         }
         return $cad;
     }
