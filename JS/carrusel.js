@@ -1,18 +1,4 @@
-var urlI = "php/Interfaz.php";
 var urlP = "php/proceso.php";
-
-function viewsPag(menu,vista,sub) {
-    var datos = new FormData();
-    var sol = new XMLHttpRequest();
-    datos.append("opc", menu);
-    datos.append("acc",vista);
-    datos.append("subacc",sub);
-    sol.addEventListener("load", function(e){
-        document.getElementById("root").innerHTML=e.target.responseText;
-    });
-    sol.open("POST",urlI);
-    sol.send(datos);
-}
 
 function showCarousel(){
   var datos = new FormData();
@@ -210,8 +196,7 @@ function listImage(){
                                       <label for="nombre-m${js.id}">Nombre:</label>
                                       <input type="text" class="form-control" id="nombre-m${js.id}" value="${js.nombre}">
                                       <label for="hiper-m${js.id}">Hipervinculo:</label>
-                                      <input type="text" class="form-control" id="hiper-m${js.id}" value="${js.hiper}">
-                                    
+                                      <input type="text" class="form-control" id="hiper-m${js.id}" value="${js.hiper}">                                   
                                     </div>
                                   </div>
                                   <div class="modal-footer">

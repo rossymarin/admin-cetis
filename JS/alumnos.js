@@ -1,4 +1,3 @@
-var urlI = "php/Interfaz.php";
 var urlP = "php/proceso.php";
 
 var carrera = document.getElementById("carrera");
@@ -40,7 +39,7 @@ function listAlumnos(){
 
     var tabla = document.getElementById("bodyAlumnos")
     tabla.innerHTML="";
-  
+    
     datos.append("opc", "alumnos");
     datos.append("acc", "listar");
     
@@ -49,19 +48,18 @@ function listAlumnos(){
         cadena=cadena.split("-@-");
         for (let x = cadena.length-2; x >= 0; x--) {
           var js = JSON.parse(cadena[x]);
-          console.log(js.sexo+ "jjjj")
           tabla.innerHTML +=  `<tr>
                                 <td width="150px"><div style="overflow-x:auto; width:150px;">${js.carrera}</div></td>
-                                <td width="100px"><div>${js.no_control}</div></td> 
+                                <td width="100px"><div>${js.nocontrol}</div></td> 
                                 <td width="190px"><div style="overflow-x:auto; width:190px;">${js.curp}</div></td>
-                                <td width="160px"><div style="overflow-x:auto; width:160px;">${js.nombre}</div></td> 
-                                <td width="100px"><div>${js.grupo}</div></td>
+                                <td width="160px"><div style="overflow-x:auto; width:160px;">${js.nombre_alumno}</div></td> 
+                                <td width="100px"><div>${js.grupo_cursado}</div></td>
                                 <td width="100px"><div>${js.sexo}</div></td> 
                                 <td width="150px"><div>${js.estatus}</div></td>
                                 <td width="160px"><div style="overflow-x:auto; width:160px">${js.hiper}</div></td> 
                                 <td>
-                                    <a href="#modifyAlumno${js.id}" class="btn btn-warning"><i class="fa fa-edit" aria-hidden="true"></i></a>
-                                    <div id="modifyAlumno${js.id}" class="modals fade"  role="dialog">
+                                    <a href="#modifyAlumno${js.curp}" class="btn btn-warning"><i class="fa fa-edit" aria-hidden="true"></i></a>
+                                    <div id="modifyAlumno${js.curp}" class="modals fade"  role="dialog">
                                         <div class="modal-contenido">
                                         <div class="modal-header">
                                             <h5 class="modal-title">Modificar Alumno</h2>
@@ -73,8 +71,8 @@ function listAlumnos(){
                                         </div>
                                         <div class="modal-body">
                                             <div class="form-group">
-                                                <label for="carreraA-m${js.id}">Carrera</label>
-                                                <select id="carreraA-m${js.id}" class="form-control">
+                                                <label for="carreraA-m${js.curp}">Carrera</label>
+                                                <select id="carreraA-m${js.curp}" class="form-control">
                                                     <option selected disabled>${js.carrera}</option>
                                                     <option>Programación</option>
                                                     <option>Contabilidad</option>
@@ -83,15 +81,15 @@ function listAlumnos(){
                                                     <option>Ofimática</option>
                                                     <option>Mantenimiento Automotriz</option>
                                                 </select>
-                                                <label for="numeroA-m${js.id}">Numero de Control:</label>
-                                                <input type="text" class="form-control" id="numeroA-m${js.id}" value="${js.no_control}">
-                                                <label for="curpA-m${js.id}">CURP:</label>
-                                                <input type="text" class="form-control" id="curpA-m${js.id}" value="${js.curp}">
-                                                <label for="nombreA-m${js.id}">Nombre:</label>
-                                                <input type="text" class="form-control" id="nombreA-m${js.id}" value="${js.nombre}">
-                                                <label for="grupoA-m${js.id}">Grupo</label>
-                                                <select id="grupoA-m${js.id}" class="form-control">
-                                                    <option selected disabled>${js.grupo}</option>
+                                                <label for="numeroA-m${js.curp}">Numero de Control:</label>
+                                                <input type="text" class="form-control" id="numeroA-m${js.curp}" value="${js.nocontrol}">
+                                                <label for="curpA-m${js.curp}">CURP:</label>
+                                                <input type="text" class="form-control" id="curpA-m${js.curp}" value="${js.curp}">
+                                                <label for="nombreA-m${js.curp}">Nombre:</label>
+                                                <input type="text" class="form-control" id="nombreA-m${js.curp}" value="${js.nombre_alumno}">
+                                                <label for="grupoA-m${js.curp}">Grupo</label>
+                                                <select id="grupoA-m${js.curp}" class="form-control">
+                                                    <option selected disabled>${js.grupo_cursado}</option>
                                                     <option>Programación</option>
                                                     <option>Contabilidad</option>
                                                     <option>Trabajo Social</option>
@@ -101,27 +99,27 @@ function listAlumnos(){
                                                 </select>
                                                 <label for="sexo">Sexo</label>
                                                 <p class="mt-1">
-                                                    <input type="radio" id="H${js.id}" name="hm" value="h" required> Hombre
-                                                    <input type="radio" id="M${js.id}" name="hm" value="m" required> Mujer
+                                                    <input type="radio" id="H${js.curp}" name="hm" value="h" required> Hombre
+                                                    <input type="radio" id="M${js.curp}" name="hm" value="m" required> Mujer
                                                 </p>
-                                                <label for="estatusA-m${js.id}">Estatus</label>
-                                                <select id="estatusA-m${js.id}" class="form-control">
+                                                <label for="estatusA-m${js.curp}">Estatus</label>
+                                                <select id="estatusA-m${js.curp}" class="form-control">
                                                     <option selected disabled>${js.estatus}</option>
                                                     <option>Regular</option>
                                                     <option>Irregular</option>
                                                 </select>
-                                                <label for="hiperA-m${js.id}">Hipervinculo:</label>
-                                                <input type="text" class="form-control" id="hiperA-m${js.id}" value="${js.hiper}">
+                                                <label for="hiperA-m${js.curp}">Hipervinculo:</label>
+                                                <input type="text" class="form-control" id="hiperA-m${js.curp}" value="${js.hiper}">
 
                                             </div>
                                         </div>
                                         <div class="modal-footer">
                                             <a href="#"><button type="button" class="btn btn-secondary">Cancelar</button></a>
-                                            <a href="#saveChanges${js.id}"><button type="button" class="btn btn-warning">Modificar</button></a>
+                                            <a href="#saveChanges${js.curp}"><button type="button" class="btn btn-warning">Modificar</button></a>
                                         </div>
                                         </div>  
                                     </div>
-                                    <div id="saveChanges${js.id}" class="modals fade"  role="dialog">
+                                    <div id="saveChanges${js.curp}" class="modals fade"  role="dialog">
                                         <div class="modal-contenido">
                                         <div class="modal-header">
                                             <h5 class="modal-title">¿Desea modificar este registro?</h2>
@@ -135,15 +133,15 @@ function listAlumnos(){
                                             <p>Los cambios no podrán deshacerse.</p>
                                         </div>
                                         <div class="modal-footer">
-                                            <a href="#modifyAlumno${js.id}"><button type="button" class="btn btn-secondary">Cancelar</button></a>
-                                            <a href="#"><button type="button" class="btn btn-primary" onclick="javascript:modifyAlumno(${js.id});">Guardar Cambios</button></a>
+                                            <a href="#modifyAlumno${js.curp}"><button type="button" class="btn btn-secondary">Cancelar</button></a>
+                                            <a href="#"><button type="button" class="btn btn-primary" onclick="javascript:modifyAlumno(${js.curp});">Guardar Cambios</button></a>
                                         </div>
                                         </div>  
                                     </div>
                                     </td>
                                     <td>
-                                    <a href="#deleteAlumno${js.id}" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></a>
-                                    <div id="deleteAlumno${js.id}" class="modals fade"  role="dialog">
+                                    <a href="#deleteAlumno${js.curp}" class="btn btn-danger"><i class="fa fa-trash" aria-hidden="true"></i></a>
+                                    <div id="deleteAlumno${js.curp}" class="modals fade"  role="dialog">
                                         <div class="modal-contenido">
                                         <div class="modal-header">
                                             <h5 class="modal-title">¿Desea eliminar este registro?</h2>
@@ -158,18 +156,12 @@ function listAlumnos(){
                                         </div>
                                         <div class="modal-footer">
                                             <a href="#"><button type="button" class="btn btn-secondary">Cancelar</button></a>
-                                            <a href="#"><button type="button" class="btn btn-primary" onclick="javascript:deleteAlumno(${js.id});">Eliminar</button></a>
+                                            <a href="#"><button type="button" class="btn btn-primary" onclick="javascript:deleteAlumno(${js.curp});">Eliminar</button></a>
                                         </div>
                                         </div>  
                                     </div>
                                 </td>
                               </tr>` 
-                             //(js.sexo==="M" ? document.getElementById("M").checked = true : document.getElementById("H").checked = true)
-                             if (js.sexo=="M"){
-                                document.getElementById("M"+js.id).checked = true
-                             }else{
-                                document.getElementById("H"+js.id).checked = true
-                             }
         }
                               
       

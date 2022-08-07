@@ -1,29 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap');
+.pdf-viewer{
+    height:100%;
+    width:100%;
 
-.container{
-    padding: 1%;
-    height: 50%;
-    width: 50%;
-    overflow: hidden;
-    margin-left: 5%;
 }
 
-.carousel-img{
-    width: auto;
-    height: 100%;
-    object-fit: contain;
-}
-
-.carousel-item {
-    height: 65vh;
-    min-height: 300px;
-    background: no-repeat center center scroll;
-    -webkit-background-size: cover;
-    -moz-background-size: cover;
-    -o-background-size: cover;
-    background-size: cover;
-    background-color: rgb(219, 216, 216);
-}
 
 /* File upload*/
 ::selection{
@@ -132,77 +112,4 @@ section .details span{
 }
 .uploaded-area i.fa-check{
     font-size: 16px;
-}
-
-.modal-contenido{
-    background-color:rgb(253, 254, 254);
-    width:400px;
-    padding: 10px 20px;
-    margin: 30% auto;
-    margin-top: 15%;
-    position: relative;
-    border-radius: 5px;
-    box-shadow: 10px 10px 10px 10px rgba(0, 0, 0, 0.2);
-}
-
-.modal-position {
-    position: absolute;
-    top: 0;
-    right: 50px;
-    bottom: 0;
-    left: 50px;
-    z-index: 10040;
-    overflow: auto;
-    overflow-y: clip;
-}
-
-.modals{
-    position:fixed;
-    top:0;
-    right:0;
-    left:0;
-    opacity:0;
-    pointer-events:none;
-}
-    
-.modals:target{
-    opacity:1;
-    pointer-events:auto;
-}
-
-.modal-body{
-    overflow-y: auto;
-}
-
-#tableImages{
-    table-layout: fixed;
-    overflow-y:scroll;
-    height:500px;
-    width:500px;
-}
-
-th{
-    position: sticky;
-    top: 0;
-    z-index: 10;
-}
-
-/* Estilos para motores Webkit y blink (Chrome, Safari, Opera... )*/
-
-.scroll::-webkit-scrollbar {-webkit-appearance: none;}
-
-.scroll::-webkit-scrollbar:vertical {width:10px;}
-
-.scroll::-webkit-scrollbar:horizontal {height: 10px;}
-
-.scroll::-webkit-scrollbar-track {border-radius: 10px;}
-
-.scroll::-webkit-scrollbar-thumb {
-    background-color: #b6b5b5;
-    border-radius: 20px;
-    border: 2px solid #f1f2f3;
-}
-
-.scroll::-webkit-scrollbar-thumb:hover{
-    background-color: #bc4444;
 }

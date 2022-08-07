@@ -50,8 +50,8 @@
                 </button> 
                 <a class="navbar-brand" aria-current="page" href="javascript:navigate('dashboard.php');">Carrusel</a>
                 <a class="navbar-brand" aria-current="page" href="javascript:navigate('alumnos.php');">Alumnos</a>
-                <a class="navbar-brand" aria-current="page" href="javascript:viewsPag('index');">Horarios</a>
-                <a class="navbar-brand" aria-current="page" href="javascript:viewsPag('index');">Tramites</a>  
+                <a class="navbar-brand" aria-current="page" href="javascript:navigate('horarios.php');">Horarios</a>
+                <a class="navbar-brand" aria-current="page" href="javascript:navigate('tramites.php');">Tramites</a>  
                 <form id="logout" name="logout">
                     <li><a href="session_destruir.php" id="cerrar sesion" class="navbar-brand navbar-right">Cerrar Sesión</a></li>
                 </form> 
