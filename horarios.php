@@ -45,7 +45,7 @@
     <div id="alert-w" class="alert alert-danger" role="alert" style="display: none;"></div>
 
    
-    <div class="row ml-2 pt-1">
+    <div class="row pl-2 pt-1 pb-0">
         <div class="col-5 pt-3">
             <div class="row">
                 <div class="col-3">
@@ -53,8 +53,13 @@
                     <label class="mt-3" for="periodo">Carrera</label>
                     <label class="mt-3" for="periodo">Semestre</label>
                 </div>
-                <div class="col-8">                    
-                    <select id="carrera" class="form-control" onchange="getPeriodo()">
+                <div class="col-8">   
+                    <select id="periodo" class="form-control" onchange="getPeriodo()">
+                        <option selected disabled>Selecciona una opción</option>
+                        <option>ENE - JUL</option>
+                        <option>AGO - DIC</option>
+                    </select>                 
+                    <select id="carrera" class="form-control mt-2">
                         <option selected disabled>Selecciona una opción</option>
                         <option>Ofimatica</option>
                         <option>Trabajo Social</option>
@@ -62,15 +67,10 @@
                         <option>Programacion</option>
                         <option>Laboratorista Quimico</option>
                     </select>
-                    <select id="periodo" class="form-control mt-2" onchange="getPeriodo()">
-                        <option selected disabled>Selecciona una opción</option>
-                        <option>ENE - JUL</option>
-                        <option>AGO - DIC</option>
-                    </select>
-                    <select id="semestre" class="form-control mt-2 mb-2" onchange="getPeriodo()"></select>
+                    <select id="semestre" class="form-control mt-2 mb-2"></select>
                 </div>
             </div>
-            <div class="row pt-0">
+            <div class="row pt-0" style="width: 500px">
                 <div id="fileUploader" class="wrapper" style="margin-left: 5%;">
                     <form id="file" action="#" onclick="selectFile();">
                         <input class="file-input" type="file" name="file" hidden>
@@ -78,13 +78,13 @@
                         <p>Clic aqui para seleccionar el archivo</p>
                     </form>
                 </div>
-                <section class="progress-area"></section>
-                <section id="uploaded-area" class="uploaded-area"></section>
-                <button class="btn btn-block btn-success col-4 mt-5" style="margin-left: 30%;" type="button">Guardar</button>
+                <section class="progress-area" style="width: 500px"></section>
+                <section id="uploaded-area" class="uploaded-area" style="width: 500px; margin-left: 10%;"></section>
+                <button class="btn btn-block btn-success col-4 mt-5" style="margin-left: 30%;" type="button" onclick="saveFile();">Guardar</button>
             </div>
         </div>
-        <div class="col-7" style="height: 580px;">
-            <iframe class="pdf-viewer" src="test.pdf"></iframe>
+        <div class="col-7 pt-2" style="height: 600px;">
+            <iframe id="pdf-viewer" class="pdf-viewer" src="resource/Documents/preview.pdf"></iframe>
         </div>  
     </div>    
 </body>
