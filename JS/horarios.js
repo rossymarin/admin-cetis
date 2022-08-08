@@ -7,20 +7,20 @@ function getPeriodo(){
     if (periodo == "AGO - DIC") {
         document.getElementById("semestre").innerHTML = `
             <option selected disabled>Selecciona una opción</option>
-            <option>1ro</option>
-            <option>3ro</option>
-            <option>5to</option>
+            <option>1</option>
+            <option>3</option>
+            <option>5</option>
         `;
     }else if(periodo == "ENE - JUL") {
         document.getElementById("semestre").innerHTML = `
             <option selected disabled>Selecciona una opción</option>
-            <option>2do</option>
-            <option>4to</option>
-            <option>6to</option>
+            <option>2</option>
+            <option>4</option>
+            <option>6</option>
         `;
     }else{
         document.getElementById("semestre").innerHTML = `
-            <option selected disabled>Selecciona un periodo</option>
+            <option selected disabled>Selecciona un periodo primero</option>
         `;
     }
 }
@@ -67,22 +67,60 @@ function uploadFile(name){
 
 function saveFile(){
     const form = document.getElementById("file");
+    carrera = document.getElementById("carrera");
+    semestre = document.getElementById("semestre");
+    var alertSuccess = document.getElementById("alert-s");
+    var alertWarning = document.getElementById("alert-w");
   
     let datos = new FormData(form);
     let sol = new XMLHttpRequest();
     
     datos.append("opc", "horarios");
     datos.append("acc", "guardar");
+    datos.append("carrera", carrera.value);
+    datos.append("semestre", semestre.value);
   
     sol.addEventListener("load", function(e){
-      console.log("listo")
+        if(e.target.responseText == "exito"){
+            alertSuccess.innerHTML="Horario cargado con exito";
+            mostrar("alert-s");
+        }else{
+            alertWarning.innerHTML="Ocurrio un error";
+            mostrar("alert-w");
+        }
+        setTimeout(function(){
+            ocultar("alert-s");
+            ocultar("alert-w");
+            if(e.target.responseText == "exito"){
+                cleanHorario();
+            }
+        },2500);
     });
     sol.open("POST", urlP);
     sol.send(datos); 
-  }
+}
+
+function cleanHorario(){
+    fileUploader = document.getElementById("fileUploader"),
+    selectPeriodo = document.getElementById("periodo"),
+    selectCarrera = document.getElementById("carrera"),
+    pdfViewer = document.getElementById("pdf-viewer");
+    uploadedArea = document.querySelector(".uploaded-area");
+
+    selectPeriodo.value = "Selecciona una opción"; 
+    selectCarrera.value = "Selecciona una opción"; 
+    getPeriodo();
+    fileUploader.style.display = "block";
+    uploadedArea.innerHTML = "";
+    pdfViewer.src = "resource/Documents/preview.pdf";
+}
 
 function ocultar(div){
-    console.log(div)
     div = document.getElementById(div)
     div.style.display="none";
+}
+
+function mostrar(div){
+    div = document.getElementById(div)
+    div.style.display="block";
 }

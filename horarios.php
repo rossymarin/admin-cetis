@@ -66,6 +66,7 @@
                         <option>Mantenimiento Automotriz</option>
                         <option>Programacion</option>
                         <option>Laboratorista Quimico</option>
+                        <option>Contabilidad</option>
                     </select>
                     <select id="semestre" class="form-control mt-2 mb-2"></select>
                 </div>
@@ -80,7 +81,25 @@
                 </div>
                 <section class="progress-area" style="width: 500px"></section>
                 <section id="uploaded-area" class="uploaded-area" style="width: 500px; margin-left: 10%;"></section>
-                <button class="btn btn-block btn-success col-4 mt-5" style="margin-left: 30%;" type="button" onclick="saveFile();">Guardar</button>
+
+                <button class="btn btn-block btn-danger col-4 mt-5" style="margin-left: 15%;" type="button" onclick="cleanHorario();">Cancelar</button>
+
+                <button class="btn btn-block btn-success col-4 mt-5" style="margin-left: 10%;" type="button" data-toggle="modal" data-target="#saveHorario">Guardar</button>
+                <div class="modal fade" id="saveHorario" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered" role="document">
+                        <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLongTitle">¿Está seguro de cargar el archivo?</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        </div>
+                        <div class="modal-body">No se podrán deshacer los cambios</div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+                            <button type="button" class="btn btn-primary" onclick="saveFile();" data-dismiss="modal">Aceptar</button>
+                        </div>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
         <div class="col-7 pt-2" style="height: 600px;">
