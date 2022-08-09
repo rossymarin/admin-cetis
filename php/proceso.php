@@ -1,7 +1,7 @@
 <?PHP
     require_once("carrusel.lib.php");
     require_once("alumnos.lib.php");
-    require_once("horarios.lib.php");
+    require_once("informacion.lib.php");
     
     if(isset($_POST['opc'])){
         switch($_POST['opc']){
@@ -49,10 +49,26 @@
                 }
             break;
             case 'horarios':
-                $horario = new Horario();
+                $informacion = new Informacion();
                 switch($_POST['acc']){
                     case 'guardar':
-                        echo $horario->guardar($_POST);
+                        echo $informacion->guardarHorario($_POST);
+                    break;
+                }
+            break;
+            case 'servicio':
+                $informacion = new Informacion();
+                switch($_POST['acc']){
+                    case 'guardar':
+                        echo $informacion->guardarFormatoServicio($_POST);
+                    break;
+                }
+            break;
+            case 'practicas':
+                $informacion = new Informacion();
+                switch($_POST['acc']){
+                    case 'guardar':
+                        echo $informacion->guardarFormatoPracticas($_POST);
                     break;
                 }
             break;
